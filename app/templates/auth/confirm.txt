@@ -1,0 +1,13 @@
+Dear {{ user.username }},
+
+Welcome to NaiBlog!
+
+To confirm your account please click on the following link:
+
+{{ url_for('auth.confirm', token=token, _external=True) }}
+
+Yours,
+
+The NaiBlog Team
+
+Disclaimer: If you didn’t register an account at NaiBlog, please ignore this email. The account token shall expire in 24 hours

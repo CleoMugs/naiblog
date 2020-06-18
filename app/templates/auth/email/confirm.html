@@ -1,0 +1,9 @@
+<p>Dear {{ user.username }},</p>
+<p>Welcome to <b>NaiBlog</b>!</p>
+<p>To confirm your account please <a href="{{ url_for('auth.confirm', token=token, _external=True) }}">click here</a>.</p>
+<p>Alternatively, you can paste the following link in your browser's address bar:</p>
+<p>{{ url_for('auth.confirm', token=token, _external=True) }}</p>
+<p>Yours,</p>
+<p>The NaiBlog Team</p>
+<p><small>Disclaimer: If you didn’t register an account at NaiBlog, please ignore this email. The account token shall expire in 24 hours
+</small></p>
