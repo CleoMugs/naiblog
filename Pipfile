@@ -28,6 +28,7 @@ psycopg2 = "*"
 flask-login = "*"
 flask-sslify = "*"
 email-validator = "*"
+flask-httpauth = "*"
 
 [requires]
 python_version = "3.6"
