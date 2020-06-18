@@ -35,7 +35,7 @@ def upgrade():
     #sa.ForeignKeyConstraint(['author_id'], ['users.id'], ),
     #sa.PrimaryKeyConstraint('id')
     #)
-    op.create_index(op.f('ix_posts_timestamp'), 'posts', ['timestamp'], unique=False)
+    #op.create_index(op.f('ix_posts_timestamp'), 'posts', ['timestamp'], unique=False)
     op.create_table('comments',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('body', sa.Text(), nullable=True),
