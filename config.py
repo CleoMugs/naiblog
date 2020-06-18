@@ -15,7 +15,7 @@ class Config:
 	FLASKY_MAIL_SUBJECT_PREFIX = '[NaiBlog]'
 	FLASKY_MAIL_SENDER = 'NaiBlog Admin <flasky@example.com>'
 	FLASKY_ADMIN = os.environ.get('FLASKY_ADMIN')
-	#SSL_DISABLE = True
+	SSL_DISABLE = True
 	SSL_REDIRECT = False
 	SQLALCHEMY_TRACK_MODIFICATIONS = False
 	SQLALCHEMY_RECORD_QUERIES = True
@@ -79,7 +79,7 @@ class ProductionConfig(Config):
 		app.logger.addHandler(mail_handler)
 
 class HerokuConfig(ProductionConfig):
-	#SSL_DISABLE = bool(os.environ.get('SSL_DISABLE'))
+	SSL_DISABLE = bool(os.environ.get('SSL_DISABLE'))
 	SSL_REDIRECT = True if os.environ.get('DYNO') else False
 	
 	@classmethod
