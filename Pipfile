@@ -26,6 +26,7 @@ gunicorn = "*"
 psycopg2-binary = "*"
 psycopg2 = "*"
 flask-login = "*"
+flask-sslify = "*"
 
 [requires]
 python_version = "3.6"
