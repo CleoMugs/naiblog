@@ -54,14 +54,14 @@ def upgrade():
     #op.create_index(op.f('ix_roles_default'), 'roles', ['default'], unique=False)
     #op.add_column('users', sa.Column('about_me', sa.Text(), nullable=True))
     #op.add_column('users', sa.Column('avatar_hash', sa.String(length=32), nullable=True))
-    op.add_column('users', sa.Column('confirmed', sa.Boolean(), nullable=True))
-    op.add_column('users', sa.Column('email', sa.String(length=64), nullable=True))
+    #op.add_column('users', sa.Column('confirmed', sa.Boolean(), nullable=True))
+    #op.add_column('users', sa.Column('email', sa.String(length=64), nullable=True))
     #op.add_column('users', sa.Column('last_seen', sa.DateTime(), nullable=True))
     #op.add_column('users', sa.Column('location', sa.String(length=64), nullable=True))
     #op.add_column('users', sa.Column('member_since', sa.DateTime(), nullable=True))
     #op.add_column('users', sa.Column('name', sa.String(length=64), nullable=True))
-    op.add_column('users', sa.Column('password_hash', sa.String(length=128), nullable=True))
-    op.create_index(op.f('ix_users_email'), 'users', ['email'], unique=True)
+    #op.add_column('users', sa.Column('password_hash', sa.String(length=128), nullable=True))
+    #op.create_index(op.f('ix_users_email'), 'users', ['email'], unique=True)
     # ### end Alembic commands ###
 
 
