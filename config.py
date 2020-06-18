@@ -2,6 +2,7 @@ import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 class Config:
+	SSL_DISABLE = True
 	SECRET_KEY = os.environ.get('SECRET_KEY') or '2gsu362gxbyat9jnx'
 	SQLALCHEMY_COMMIT_ON_TEARDOWN = True
 	MAIL_SERVER = os.environ.get('MAIL_SERVER', 'smtp.googlemail.com')
@@ -73,8 +74,8 @@ class ProductionConfig(Config):
 		app.logger.addHandler(mail_handler)
 
 class HerokuConfig(ProductionConfig):
-	#SSL_DISABLE = bool(os.environ.get('SSL_DISABLE'))
-	SSL_REDIRECT = True if os.environ.get('DYNO') else False
+	SSL_DISABLE = bool(os.environ.get('SSL_DISABLE'))
+	#SSL_REDIRECT = True if os.environ.get('DYNO') else False
 	
 	@classmethod
 	def init_app(cls, app):

@@ -23,6 +23,8 @@ python-dotenv = "*"
 werkzeug = "==0.16.0"
 coverage = "*"
 gunicorn = "*"
+psycopg2-binary = "*"
+psycopg2 = "*"
 
 [requires]
 python_version = "3.6"
