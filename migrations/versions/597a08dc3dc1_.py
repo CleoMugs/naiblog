@@ -36,19 +36,19 @@ def upgrade():
     #sa.PrimaryKeyConstraint('id')
     #)
     #op.create_index(op.f('ix_posts_timestamp'), 'posts', ['timestamp'], unique=False)
-    op.create_table('comments',
-    sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('body', sa.Text(), nullable=True),
-    sa.Column('body_html', sa.Text(), nullable=True),
-    sa.Column('timestamp', sa.DateTime(), nullable=True),
-    sa.Column('disabled', sa.Boolean(), nullable=True),
-    sa.Column('author_id', sa.Integer(), nullable=True),
-    sa.Column('post_id', sa.Integer(), nullable=True),
-    sa.ForeignKeyConstraint(['author_id'], ['users.id'], ),
-    sa.ForeignKeyConstraint(['post_id'], ['posts.id'], ),
-    sa.PrimaryKeyConstraint('id')
-    )
-    op.create_index(op.f('ix_comments_timestamp'), 'comments', ['timestamp'], unique=False)
+    #op.create_table('comments',
+    #sa.Column('id', sa.Integer(), nullable=False),
+    #sa.Column('body', sa.Text(), nullable=True),
+    #sa.Column('body_html', sa.Text(), nullable=True),
+    #sa.Column('timestamp', sa.DateTime(), nullable=True),
+    #sa.Column('disabled', sa.Boolean(), nullable=True),
+    #sa.Column('author_id', sa.Integer(), nullable=True),
+    #sa.Column('post_id', sa.Integer(), nullable=True),
+    #sa.ForeignKeyConstraint(['author_id'], ['users.id'], ),
+    #sa.ForeignKeyConstraint(['post_id'], ['posts.id'], ),
+    #sa.PrimaryKeyConstraint('id')
+    #)
+    #op.create_index(op.f('ix_comments_timestamp'), 'comments', ['timestamp'], unique=False)
     op.add_column('roles', sa.Column('default', sa.Boolean(), nullable=True))
     op.add_column('roles', sa.Column('permissions', sa.Integer(), nullable=True))
     op.create_index(op.f('ix_roles_default'), 'roles', ['default'], unique=False)
