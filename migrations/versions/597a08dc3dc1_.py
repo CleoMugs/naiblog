@@ -49,7 +49,7 @@ def upgrade():
     #sa.PrimaryKeyConstraint('id')
     #)
     #op.create_index(op.f('ix_comments_timestamp'), 'comments', ['timestamp'], unique=False)
-    op.add_column('roles', sa.Column('default', sa.Boolean(), nullable=True))
+    #op.add_column('roles', sa.Column('default', sa.Boolean(), nullable=True))
     op.add_column('roles', sa.Column('permissions', sa.Integer(), nullable=True))
     op.create_index(op.f('ix_roles_default'), 'roles', ['default'], unique=False)
     op.add_column('users', sa.Column('about_me', sa.Text(), nullable=True))
