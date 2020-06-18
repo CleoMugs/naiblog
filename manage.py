@@ -65,12 +65,12 @@ def profile(length=25, profile_dir=None):
 	app.run()
 
 
-#@app.cli.command()
-@manager.command
+@app.cli.command()
+#@manager.command
 def deploy():
 	"""Run deployment tasks."""
-	from flask_migrate import upgrade
-	from app.models import Role, User
+	#from flask_migrate import upgrade
+	#from app.models import Role, User
 
 	# migrate database to latest revision
 	upgrade()
