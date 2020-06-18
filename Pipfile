@@ -27,6 +27,7 @@ psycopg2-binary = "*"
 psycopg2 = "*"
 flask-login = "*"
 flask-sslify = "*"
+email-validator = "*"
 
 [requires]
 python_version = "3.6"
