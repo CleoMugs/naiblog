@@ -44,3 +44,8 @@ venv
 # Environment files
 .env
 .env-mysql
+
+#Designing templates
+login2.html
+register2.html
+index2.html

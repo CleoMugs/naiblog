@@ -5,7 +5,7 @@ from ..models import User
 from .. import db
 from ..email import send_email
 from .forms import (LoginForm, RegistrationForm, ChangePasswordForm,
-					PasswordResetRequestForm, ChangeEmailForm)
+					PasswordResetRequestForm, PasswordResetForm, ChangeEmailForm)
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
@@ -52,6 +52,37 @@ def confirm(token):
 		flash('The confirmation link is invalid or has expired')
 	return redirect(url_for('main.index'))
 
+@auth.route('/reset', methods=['GET', 'POST'])
+def password_reset_request():
+    if not current_user.is_anonymous:
+        return redirect(url_for('main.index'))
+    form = PasswordResetRequestForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data.lower()).first()
+        if user:
+            token = user.generate_reset_token()
+            send_email(user.email, 'Reset Your Password',
+                       'auth/email/reset_password',
+                       user=user, token=token)
+        flash('An email with instructions to reset your password has been '
+              'sent to you.')
+        return redirect(url_for('auth.login'))
+    return render_template('auth/reset_password.html', form=form)
+
+
+@auth.route('/reset/<token>', methods=['GET', 'POST'])
+def password_reset(token):
+    if not current_user.is_anonymous:
+        return redirect(url_for('main.index'))
+    form = PasswordResetForm()
+    if form.validate_on_submit():
+        if User.reset_password(token, form.password.data):
+            db.session.commit()
+            flash('Your password has been updated.')
+            return redirect(url_for('auth.login'))
+        else:
+            return redirect(url_for('main.index'))
+    return render_template('auth/reset_password.html', form=form)
 
 @auth.route('/change-password', methods=['GET', 'POST'])
 @login_required
@@ -62,7 +93,7 @@ def change_password():
             current_user.password = form.password.data
             db.session.add(current_user)
             db.session.commit()
-            flash('Your password has been updated.')
+            flash('Your password has been updated.', 'succes')
             return redirect(url_for('main.index'))
         else:
             flash('Invalid password.')
@@ -81,10 +112,10 @@ def change_email_request():
                        'auth/email/change_email',
                        user=current_user, token=token)
             flash('An email with instructions to confirm your new email '
-                  'address has been sent to you.')
+                  'address has been sent to you.', 'success')
             return redirect(url_for('main.index'))
         else:
-            flash('Invalid email or password.')
+            flash('Invalid email or password.', 'danger')
     return render_template("auth/change_email.html", form=form)
 
 @auth.before_app_request
@@ -110,7 +141,7 @@ def resend_confirmation():
 	send_email(current_user.email, 'Confirm Your Account', 
 				'auth/email/confirm', user=current_user, token=token)
 
-	flash('A new confirmation email has been sent to you by email')
+	flash('A new confirmation email has been sent to you by email', 'success')
 	return redirect(url_for('main.index'))
 
 

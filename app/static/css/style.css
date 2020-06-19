@@ -107,3 +107,12 @@ div.flask-pagedown-preview h3 {
     border-bottom: 1px solid #e0e0e0;
 }
 
+/**Adding customized style**/
+.content-section {
+  background: #ffffff;
+  padding: 10px 20px;
+  border: 1px solid #dddddd;
+  border-radius: 6px;
+  /**margin-top: 10px;**/
+  margin-bottom: 20px;
+}

@@ -1,3 +1,4 @@
+"""
 import os
 from flask import Flask, url_for, render_template, session
 from datetime import datetime
@@ -120,3 +121,4 @@ def internal_server_error(e):
 
 if __name__ == '__main__':
 	manager.run()
+"""
