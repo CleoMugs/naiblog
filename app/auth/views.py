@@ -82,7 +82,7 @@ def password_reset(token):
             return redirect(url_for('auth.login'))
         else:
             return redirect(url_for('main.index'))
-    return render_template('auth/reset_password.html', form=form)
+    return render_template('auth/reset_password_b.html', form=form)
 
 @auth.route('/change-password', methods=['GET', 'POST'])
 @login_required
@@ -117,6 +117,18 @@ def change_email_request():
         else:
             flash('Invalid email or password.', 'danger')
     return render_template("auth/change_email.html", form=form)
+
+
+@auth.route('/change_email/<token>')
+@login_required
+def change_email(token):
+    if current_user.change_email(token):
+        db.session.commit()
+        flash('Your email address has been updated.')
+    else:
+        flash('Invalid request.')
+    return redirect(url_for('main.index'))
+
 
 @auth.before_app_request
 def before_request():
