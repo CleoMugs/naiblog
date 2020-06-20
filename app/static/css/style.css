@@ -3,8 +3,8 @@
     position: absolute;
 }
 .profile-header {
-    min-height: 260px;
-    margin-left: 280px;
+    min-height: 100px;
+    margin-left: 100px;
 }
 div.post-tabs {
     margin-top: 16px;
