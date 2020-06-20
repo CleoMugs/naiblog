@@ -5,29 +5,22 @@
 
 {% block page_content %}
 
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-md-6">
-			<img class="img-rounded profile-thumbnail" src="{{ user.gravatar(size=200) }}">
-		</div>	
-	</div>
-</div>
 
 <div class="container">
-	<div class="row">
-		<div class="col-md-6">
-			<h1>{{ user.username }}</h1>
-			{% if user.name or user.location %}
-			<p>
-				{% if user.name %}{{ user.name }}{% endif %}
-				{% if user.location %}
-					From <a href="http://maps.google.com/?q={{ user.location }}">
-						{{ user.location }}
-					</a>
-				{% endif %}
-			</p>
+	<div class="card" style="width: 30rem;">
+	  <img class="card-img-top " src="{{ user.gravatar(size=170) }}" alt="Card image cap">
+	  <div class="card-body">
+	    <h1 class="card-title">{{ user.username }}</h1>
+	    <p>
+			{% if user.name %}{{ user.name }}{% endif %}
+			{% if user.location %}
+				From <a href="http://maps.google.com/?q={{ user.location }}">
+					{{ user.location }}
+				</a>
 			{% endif %}
-			{% if current_user.is_administrator() %}
+		</p>
+
+		    {% if current_user.is_administrator() %}
 				<p><a href="mailto:{{ user.email }}">{{ user.email }}</a></p>
 			{% endif %}
 			{% if user.about_me %}<p>{{ user.about_me }}</p>{% endif %}
@@ -73,8 +66,7 @@
 				Edit Profile [Admin]
 				</a>
 			{% endif %}
-
-		</div>	
+	  </div>
 	</div>
 </div>
 
